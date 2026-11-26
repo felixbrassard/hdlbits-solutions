@@ -11,3 +11,10 @@
 ## Day 1 (Part 3) — Signal Direction
 * **Signal Direction (`assign out = in;`):** The destination wire being driven always goes on the left side of `=`, and the source signal goes on the right side (`out <--- in`).
 * **Why `in = out` is invalid:** Inputs are already driven by whatever sits outside the module, so trying to assign a value to an `input` drives the wire backward and leaves `out` disconnected.
+
+## Day 2 — Parallel Wires & Basic Logic Gates
+* **Parallel Execution:** Unlike C code that runs line by line, multiple `assign` statements in Verilog represent separate physical wires operating at the exact same time—the order you write them does not matter.
+* **Bitwise Logic Gates:** Verilog uses the same bitwise operators as C (`~` for NOT, `&` for AND, `|` for OR), which synthesize directly into physical logic gates (`~(a | b)` creates a NOR gate).
+* **Bitwise `~` vs. Logical `!`:**
+  * `~` (Bitwise NOT) flips every individual bit and preserves the signal's bit-width (e.g., `~4'b1010` -> `4'b0101`). Always use `~` for hardware gates.
+  * `!` (Logical NOT) checks if the entire value is zero or non-zero and always returns a single 1-bit `1` or `0` (e.g., `!4'b1010` -> `1'b0`).
