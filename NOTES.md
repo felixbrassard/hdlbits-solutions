@@ -25,3 +25,10 @@
 * **Vectors:** `wire [2:0] vec;` bundles 3 wires (`vec[2]` = MSB, `vec[0]` = LSB); assign the whole bus (`outv = vec`) or single bits (`vec[0]`).
 * **Max Unsigned Value:** An $N$-bit bus holds $0$ to $2^N - 1$ (3 bits = `0..7`; 10 bits `[9:0]` = `0..1023`).
 
+## Day 3 — Bit-Slicing, Reduction Operators & Concatenation
+* **Part-Select (Bit-Slicing):** Access chunks of a bus with `[MSB:LSB]` (e.g., `in[15:8]`). The slice direction must match the vector's declaration direction (`[7:0]` slices high-to-low).
+* **Implicit Nets:** Undeclared wire names silently default to 1-bit wires; put `` `default_nettype none `` at the top of real design files to catch typos as compiler errors.
+* **Bitwise vs. Logical OR:** `a | b` runs OR bit-by-bit (preserves width); `a || b` checks if either whole vector is non-zero (always 1-bit).
+* **Reduction Operators:** Placing `&in`, `|in`, or `^in` before a single bus collapses all its bits into a 1-bit AND, OR, or parity XOR result.
+* **Concatenation (`{ }`):** Joins signals from MSB to LSB (`{a, b, 2'b11}`) and can also sit on the left side (`assign {w, x, y, z} = ...;`) to split a wide bus. Every literal inside `{ }` must specify its bit-width.
+
