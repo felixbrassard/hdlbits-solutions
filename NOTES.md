@@ -18,3 +18,10 @@
 * **Bitwise `~` vs. Logical `!`:**
   * `~` (Bitwise NOT) flips every individual bit and preserves the signal's bit-width (e.g., `~4'b1010` -> `4'b0101`). Always use `~` for hardware gates.
   * `!` (Logical NOT) checks if the entire value is zero or non-zero and always returns a single 1-bit `1` or `0` (e.g., `!4'b1010` -> `1'b0`).
+
+## Day 2 (Part 2) — Internal Wires, XNOR & Vectors
+* **XOR & XNOR:** `^` is bitwise XOR (`a ^ b`), and `~(a ^ b)` is XNOR (outputs `1` when both inputs match).
+* **Internal Wires:** `wire w1, w2;` creates intermediate connections between gates (used in `declaring_wires` and `7458`).
+* **Vectors:** `wire [2:0] vec;` bundles 3 wires (`vec[2]` = MSB, `vec[0]` = LSB); assign the whole bus (`outv = vec`) or single bits (`vec[0]`).
+* **Max Unsigned Value:** An $N$-bit bus holds $0$ to $2^N - 1$ (3 bits = `0..7`; 10 bits `[9:0]` = `0..1023`).
+
